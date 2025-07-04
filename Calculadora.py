@@ -1,4 +1,4 @@
-# Calculadora Básica con operadores +, -, *, /
+# Calculadora Básica con operadores +, -, *, / incluye validación de entrada y manejo de excepciones.
 
 print("CALCULADORA BÁSICA. Use operadores +, -, *, /")
 numero = input("ingrese un número: ")
