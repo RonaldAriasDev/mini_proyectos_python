@@ -28,6 +28,8 @@ def search():
 def add():
   add_number = input("Ingrese un número de nueve digitos como máximo: ")
   if len(add_number.strip()) <= 9:
+    if not add_number.isnumeric():
+      raise ValueError("El numero ingresado debe tener solo digitos númericos")
     add_contact = input("Ingrese un nombre: ")
     contacts[add_contact.lower().strip()] = add_number.strip()
     print("Contacto guardado correctamente")
@@ -74,20 +76,25 @@ while loop_control == 1:
   option = menu()
   try:
     int_option = int(option)
-    if int_option == 1:
-      show_all()
-    elif int_option == 2:
-      search()
-    elif int_option == 3:
-      add()
-    elif int_option == 4:
-      update()
-    elif int_option == 5:
-      delete()
-    elif int_option == 6:
-      loop_control = 2
-      exit()
-    else:
-      invalid_input()  
   except ValueError:
     invalid_data()
+    continue 
+  if int_option == 1:
+    show_all()
+  elif int_option == 2:
+    search()
+  elif int_option == 3:
+    try:
+      add()
+    except ValueError as e:
+      print(e)
+  elif int_option == 4:
+    update()
+  elif int_option == 5:
+    delete()
+  elif int_option == 6:
+    loop_control = 2
+    exit()
+  else:
+    invalid_input()  
+  
