@@ -3,7 +3,7 @@
 - Palíndromos: reconocer
 - Anagramas: vela vale
 - Isogramas: hola
- """
+"""
  
 print("ANALIZADOR DE PALABRAS")
  
