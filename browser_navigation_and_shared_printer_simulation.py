@@ -1,16 +1,18 @@
-"""
-Utilizando la implementación de pila y cadenas de texto, simula el mecanismo adelante/atrás de un navegador web. 
-Crea un programa en el que puedas navegar a una página o indicarle que te quieres desplazar adelante o atrás, mostrando en cada caso el nombre de la web.
-Las palabras "adelante", "atrás" desencadenan esta acción, el resto se interpreta como el nombre de una nueva web.
-"""
+# 📌 Simulación del mecanismo adelante/atrás de un navegador web
+# Utilizando pila y cadenas de texto:
+# - Las palabras "adelante" y "atrás" desplazan en la historia de navegación.
+# - Cualquier otro texto se interpreta como el nombre de una nueva web.
+# - El programa muestra el nombre de la página actual en cada acción.
+
 
 def interface():
-  opcion = input(' \n\nBrowser\nPara ingresar una nueva dirección digite 1\nPara regresar ingrese 2\nPara ir hacia adelante ingrese 3: \n ')
+  opcion = input(" \nBrowser\nPara ingresar una nueva dirección digite 1\nPara"
+  "regresar ingrese 2\nPara ir hacia adelante ingrese 3: \n ")
   return opcion
  
 
-history1 = ['inicio']        #
-history2 = []                # 
+history1 = ['inicio']  
+history2 = []
 
 while True:
   opcion = interface()
@@ -33,26 +35,5 @@ while True:
       else:
         print('No es posible ir adelante')
     case _:
-      print('Opción no valida')
-
-
-"""
-Utilizando la implementación de cola y cadenas de texto, simula el mecanismo de una impresora compartida que recibe documentos y los imprime cuando así se le indica.
-La palabra "imprimir" imprime un elemento de la cola, el resto de palabras se interpretan como nombres de documentos
-"""
-
-documents = []
-documents.append(input('Documentos de notebook1:'))
-documents.append(input('Documentos de notebook2:'))
-print("Impresora")
-while True:
-  print(f'Documentos en cola: {documents}')
-  option = input('Para imprimir ingrese 1\nPara salir ingrese 2: \n')
-  if option == '1':
-    print(documents[0])
-    documents.pop(0)
-  elif option == '2':
-    print('Hasta pronto')
-    break
-  else:
-    print('Opción invalida')
+      print('Opción no valid
+      a')
