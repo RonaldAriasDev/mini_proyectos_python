@@ -1,4 +1,6 @@
-# Crea un programa que pida un número al usuario y devuelva si es par o impar
+# 📌 Determinar si un número es par o impar
+# El programa pide un número al usuario.
+# Devuelve si el número es par o impar.
 
 print("PAR O IMPAR")
 number = input("Ingrese un número: ").strip()
