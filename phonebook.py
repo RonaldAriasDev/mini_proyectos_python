@@ -1,11 +1,14 @@
-"""
-Crea una agenda de contactos por terminal.
- * - Debes implementar funcionalidades de búsqueda, inserción, actualización y eliminación de contactos.
- * - Cada contacto debe tener un nombre y un número de teléfono.
- * - El programa solicita en primer lugar cuál es la operación que se quiere realizar, y a continuación los datos necesarios para llevarla a cabo.
- * - El programa no puede dejar introducir números de teléfono no numéricos y con más de 11 dígitos (o el número de dígitos que quieras)
- * - También se debe proponer una operación de finalización del programa.
-"""
+# 📌 Agenda de contactos por terminal
+# El programa permite gestionar una lista de contactos.
+# Funcionalidades:
+# - Añadir un nuevo contacto con nombre y número de teléfono.
+# - Buscar un contacto por nombre.
+# - Actualizar el número de un contacto existente.
+# - Eliminar un contacto.
+# - Finalizar el programa.
+# Restricciones:
+# - Los números de teléfono deben ser numéricos y no superar 9 dígitos.
+# - El programa solicita al usuario qué operación desea realizar y los datos necesarios para ejecutarla.
 
 
 def menu():
@@ -97,4 +100,3 @@ while loop_control == 1:
     exit()
   else:
     invalid_input()  
-  
