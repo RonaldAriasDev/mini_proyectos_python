@@ -1,8 +1,10 @@
-# Calculadora Básica con operadores +, -, *, / incluye validación de entrada y manejo de excepciones
+# Calculadora básica que permite realizar operaciones de suma, resta, multiplicación y división entre dos números enteros. 
+# El programa solicita al usuario los dos números y el operador a utilizar, incluye validación de entradas y muestra el resultado de la operación.
 
-print("CALCULADORA BÁSICA. Use operadores +, -, *, /")
+
+print("CALCULADORA BÁSICA")
 first_input = input("ingrese un número: ")
-operator = input("ingrese un operador: ")
+operator = input("ingrese un operador (+, -, *, /): ")
 second_input = input("ingrese un número: ")
 
 try:
@@ -22,4 +24,5 @@ try:
   else:
     print("operador invalido")
 except ValueError:
-  print("Los valores ingresados deben ser números enteros")
+  print("Los valores ingresados deben ser números entero
+  s")
