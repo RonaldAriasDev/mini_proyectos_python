@@ -1,9 +1,8 @@
-"""
- Crea un programa que analice dos palabras diferentes y que devuelva si son:
-- Palíndromos: reconocer
-- Anagramas: vela vale
-- Isogramas: hola
-"""
+# Analizador de palabras que permite ingresar dos palabras y determina:
+# - Si cada palabra es un "palíndromo".
+# - Si las palabras son "anagramas" entre sí.
+# - Si cada palabra es un "isograma".
+# El programa muestra los resultados de manera clara y sencilla.
  
 print("ANALIZADOR DE PALABRAS")
  
@@ -52,11 +51,11 @@ def is_isogram(first_word, second_word):
   first_set = set(first_word)
   second_set = set(second_word)
   
-"""
-Si la longitud de el conjunto y la cadena de texto son iguales, no se eliminó
-ningún elemento de la cadena cuando se convirtio a conjunto, por tanto no
-tiene elementos (letras) repetidos
-"""
+
+#Si la longitud de el conjunto y la cadena de texto son iguales, no se eliminó
+#ningún elemento de la cadena cuando se convirtio a conjunto, por tanto no
+#tiene elementos (letras) repetidos
+
   if len(first_set) == len(first_word):
     print(f"{first_word} es un isograma")
   else:
@@ -89,4 +88,5 @@ while loop_control == 1:
     loop_control = 2
     print("Hasta pronto")
   else:
-    print("Ingrese una opción valida")
+    print("Ingrese una op
+    ción valida")
