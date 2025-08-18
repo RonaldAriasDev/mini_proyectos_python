@@ -1,2 +1,2 @@
-📌 Mini proyectos resueltos a medida que avanzo en el roadmap de Retos de Programación de Mouredev.
-Estos proyectos son funcionales y sirven para practicar lógica y aplicar conceptos de programación en Python.
+📌 Proyectos simples que muestran la práctica de conceptos y fundamentos de Python.
+Cada proyecto es funcional y permite ejercitar la lógica de programación.
