@@ -1,15 +1,9 @@
 '''
-Una biblioteca necesita un sistema para administrar sus materiales.
-Existen distintos tipos de materiales: libros, revistas y películas.
-Cada material tiene título y año de publicación, pero además cada tipo de material tiene información extra:
-Libro: nombre del autor y número de páginas.
-Revista: número de edición y mes de publicación.
-Película: director y duración en minutos.
-El sistema debe permitir:
-1. Registrar nuevos materiales.
-2. Listar todos los materiales mostrando su información.
-3. Permitir buscar materiales por título.
-(Todos los materiales deben poder mostrar su información con un mismo método, pero cada tipo de material lo hará adaptado a sus propios datos).
+Este programa simula un sistema de biblioteca que administra distintos tipos de materiales: libros, revistas y películas. 
+Cada material tiene un título y año de publicación, mientras que los libros incluyen el nombre del autor y número de páginas, 
+las revistas incluyen el número de edición y mes de publicación, y las películas incluyen el director y duración en minutos. 
+El sistema permite registrar nuevos materiales, listar todos los materiales con su información 
+y buscar materiales por título. Cada tipo de material muestra su información usando un mismo método adaptado a sus datos específicos.
 '''
 
 
