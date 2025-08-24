@@ -27,7 +27,7 @@ class Library:
       print(f'No se ha registrado ningún material.')
       
   def search_material(self):
-    title = format_text(input(' \nIngrese el título del material: '))
+    title = format_text(' \nIngrese el título del material: ')
     for material in self.materials:
       if material.title == title:
         print(material)
@@ -70,14 +70,16 @@ storage = Library(None, None)
 
 
 def menu():
+  menu_lines = [
+    'Seleccione una opción:', 
+    '1. Registrar material', 
+    '2. Mostrar todos los materiales', 
+    '3. Buscar material por título', 
+    '4. Salir'
+    ]
   while True:
     try:
-      menu_option = int(input(
-        ' \nSeleccione una opción'
-        '\n1. Registrar material'
-        '\n2. Mostrar todos los materiales'
-        '\n3. Buscar material por título'
-        '\n4. Salir'))
+      menu_option = int(input(' \n' + '\n'.join(menu_lines)))
       if menu_option in [1, 2, 3, 4]:
         return menu_option
       else:
@@ -87,13 +89,15 @@ def menu():
 
 
 def material_type():
+  selected_option = [
+    'Seleccione el tipo de material', 
+    '1. Libro', 
+    '2. Revista', 
+    '3. Pelicúla'  
+    ]
   while True:
     try:
-      selected_material = int(input(
-        ' \nSeleccione el tipo de material'
-        '\n1. Libro'
-        '\n2. Revista'
-        '\n3. Pelicúla'))
+      selected_material = int(input(' \n' + '\n'.join(selected_option)))
       if selected_material in [1, 2, 3]:
         return selected_material
       else:
@@ -103,24 +107,47 @@ def material_type():
 
 
 def format_text(text: str):
-  text = text.title().strip()
-  return text
+  while True:
+    prompt = input(text).strip()
+    if all(word.isalpha() for word in prompt.split()):
+      return prompt.title()
+    else:
+      print('Ingrese solo letras')
 
 
-def format_number(prompt: str):
+def format_number(text: str):
   while True:
     try:
-      number = int(input(prompt))
-      return number
+      formatted_number = int(input(text))
+      if text == 'Año de publicación: ':
+        if 0 <= formatted_number <= 2025:
+          return formatted_number
+        else:
+          print('Ingrese un año de 0 a 2025')
+      elif text == 'Número de páginas: ':
+        if 0 <= formatted_number <= 1000:
+          return formatted_number
+        else:
+          print('Ingrese una cantidad de páginas de 0 a 1000')
+      elif text == 'Edicición n•: ':
+        if 1 <= formatted_number <= 100:
+          return formatted_number
+        else:
+          print('Ingrese un número de edición de 1 a 100')
+      elif text == 'Duración en minutos: ':
+        if 0 <= formatted_number <= 300:
+          return formatted_number
+        else:
+          print('Ingrese una catidad de máximo 300 minutos')
     except ValueError:
-      print('Digite un número entero')
+      print('Ingrese un número entero')
 
 
 def add_book():
   print(' \nIngrese los datos a continuación')
-  title = format_text(input('Titulo: '))
+  title = format_text('Titulo: ')
   year = format_number('Año de publicación: ')
-  author = format_text(input('Autor: '))
+  author = format_text('Autor: ')
   number_pages = format_number('Número de páginas: ')
   new_book = Book(title, year, author, number_pages)
   storage.add(new_book)
@@ -129,10 +156,10 @@ def add_book():
 
 def add_magazine():
   print(' \nIngrese los datos a continuación')
-  title = format_text(input('Titulo: '))
+  title = format_text('Titulo: ')
   year = format_number('Año de publicación: ')
   edition_number = format_number('Edicición n•: ')
-  publication_month = format_text(input('Més de publicación: '))
+  publication_month = format_text('Més de publicación: ')
   new_magazine = Magazine(title, year, edition_number, publication_month)
   storage.add(new_magazine)
   print('Revista agregada con éxito')
@@ -140,9 +167,9 @@ def add_magazine():
   
 def add_movie():
   print(' \nIngrese los datos a continuación')
-  title = format_text(input('Titulo: '))
+  title = format_text('Titulo: ')
   year = format_number('Año de publicación: ')
-  director = format_text(input('Director: '))
+  director = format_text('Director: ')
   duration_minutes = format_number('Duración en minutos: ')
   new_movie = Movie(title, year, director, duration_minutes)
   storage.add(new_movie)
@@ -173,4 +200,3 @@ while True:
   elif menu_option == 4:
     print(' \nHasta pronto')
     break
-  
