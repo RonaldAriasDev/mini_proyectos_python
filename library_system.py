@@ -11,29 +11,9 @@ class Library:
   def __init__(self, title: str, year: int):
     self.title = title
     self.year = year
-    self.materials = []
   
   def __str__(self):
     return f' \nTitulo: {self.title}\nAño de publicación: {self.year}'
-
-  def add(self, material):
-    self.materials.append(material)
-  
-  def show_materials(self):
-    if len(self.materials) >= 1:
-      for material in self.materials:
-        print(material)
-    else:
-      print(f'No se ha registrado ningún material.')
-      
-  def search_material(self):
-    title = format_text(' \nIngrese el título del material: ')
-    for material in self.materials:
-      if material.title == title:
-        print(material)
-        break
-    else:
-      print(f' \n{title} no está registrado')
 
 
 class Book(Library):
@@ -66,7 +46,31 @@ class Movie(Library):
     return f' \nTitulo: {self.title}\nAño de publicación: {self.year}\nDirector: {self.director}\nDuración (minutos): {self.duration_minutes}'
 
 
-storage = Library(None, None)
+class Archive:
+  
+  def __init__(self):
+    self.materials = []
+  
+  def add(self, material):
+    self.materials.append(material)
+  
+  def show_materials(self):
+    if len(self.materials) >= 1:
+      for material in self.materials:
+        print(material)
+    else:
+      print(f'No se ha registrado ningún material.')
+      
+  def search_material(self):
+    title = format_text(' \nIngrese el título del material: ')
+    for material in self.materials:
+      if material.title == title:
+        print(material)
+        break
+    else:
+      print(f' \n{title} no está registrado')
+
+storage = Archive()
 
 
 def menu():
