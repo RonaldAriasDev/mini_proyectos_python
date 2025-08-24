@@ -119,30 +119,14 @@ def format_text(text: str):
       print('Ingrese solo letras')
 
 
-def format_number(text: str):
+def format_number(text: str, min_val: int, max_val: int):
   while True:
     try:
       formatted_number = int(input(text))
-      if text == 'Año de publicación: ':
-        if 0 <= formatted_number <= 2025:
-          return formatted_number
-        else:
-          print('Ingrese un año de 0 a 2025')
-      elif text == 'Número de páginas: ':
-        if 0 <= formatted_number <= 1000:
-          return formatted_number
-        else:
-          print('Ingrese una cantidad de páginas de 0 a 1000')
-      elif text == 'Edicición n•: ':
-        if 1 <= formatted_number <= 100:
-          return formatted_number
-        else:
-          print('Ingrese un número de edición de 1 a 100')
-      elif text == 'Duración en minutos: ':
-        if 0 <= formatted_number <= 300:
-          return formatted_number
-        else:
-          print('Ingrese una catidad de máximo 300 minutos')
+      if min_val <= formatted_number <= max_val:
+        return formatted_number
+      else:
+        print(f'Ingrese un número entre {min_val} y {max_val}')
     except ValueError:
       print('Ingrese un número entero')
 
@@ -150,9 +134,9 @@ def format_number(text: str):
 def add_book():
   print(' \nIngrese los datos a continuación')
   title = format_text('Titulo: ')
-  year = format_number('Año de publicación: ')
+  year = format_number('Año de publicación: ', 0, 2025)
   author = format_text('Autor: ')
-  number_pages = format_number('Número de páginas: ')
+  number_pages = format_number('Número de páginas: ', 1, 1000)
   new_book = Book(title, year, author, number_pages)
   storage.add(new_book)
   print('Libro agregado con éxito')
@@ -161,8 +145,8 @@ def add_book():
 def add_magazine():
   print(' \nIngrese los datos a continuación')
   title = format_text('Titulo: ')
-  year = format_number('Año de publicación: ')
-  edition_number = format_number('Edicición n•: ')
+  year = format_number('Año de publicación: ', 1900, 2025)
+  edition_number = format_number('Edicición n•: ', 1, 120)
   publication_month = format_text('Més de publicación: ')
   new_magazine = Magazine(title, year, edition_number, publication_month)
   storage.add(new_magazine)
@@ -172,9 +156,9 @@ def add_magazine():
 def add_movie():
   print(' \nIngrese los datos a continuación')
   title = format_text('Titulo: ')
-  year = format_number('Año de publicación: ')
+  year = format_number('Año de publicación: ', 1900, 2025)
   director = format_text('Director: ')
-  duration_minutes = format_number('Duración en minutos: ')
+  duration_minutes = format_number('Duración en minutos: ', 1, 300)
   new_movie = Movie(title, year, director, duration_minutes)
   storage.add(new_movie)
   print('Película agregada con éxito')
