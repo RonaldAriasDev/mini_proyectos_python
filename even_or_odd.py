@@ -1,15 +1,25 @@
 # 📌 Determinar si un número es par o impar
-# El programa pide un número al usuario.
-# Devuelve si el número es par o impar.
+# Este mini proyecto consiste en un programa que:
+# Solicita al usuario que ingrese un número.
+# Valida que la entrada sea un número válido.
+# Determina si el número es par o impar usando el operador módulo (`%`).
+# Muestra al usuario si el número ingresado es par o impar.
 
 print("PAR O IMPAR")
-number = input("Ingrese un número: ").strip()
 
-try:
-  number_int = int(number)
-  if (number_int % 2) == 0:
-    print(f"El número {number_int} es par")
+
+def validate_prompt(prompt):
+  while True:
+    try:
+      validated_prompt = int(input(prompt).strip())
+      return validated_prompt
+    except ValueError:
+      print('Ingrese un número entero')
+
+
+while True:
+  validated_prompt = validate_prompt('Ingrese número: ')
+  if validated_prompt % 2 == 0:
+    print(f"El número {validated_prompt} es par")
   else:
-    print(f"El número {number_int} es impar")
-except ValueError:
-  print("por favor ingrese un número entero, no decimal, ni en texto")
+    print(f"El número {validated_prompt} es impar")
