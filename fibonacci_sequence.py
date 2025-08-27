@@ -1,7 +1,22 @@
 # 📌 Cálculo de un elemento de la sucesión de Fibonacci
-# El programa pide al usuario que ingrese una posición.
-# Devuelve el valor de la sucesión de Fibonacci en esa posición usando una función.
-# 0, 1, 1, 2, 3, 5, 8, 13, 21...
+# Este mini proyecto consiste en un programa que:
+# Solicita al usuario que ingrese una posición en la sucesión de Fibonacci.
+# Valida que la entrada sea un número entero no negativo.
+# Calcula el valor correspondiente a esa posición utilizando una función recursiva.
+# Muestra el resultado al usuario.
+# La sucesión de Fibonacci comienza así: 0, 1, 1, 2, 3, 5, 8, 13, 21...
+
+
+def validate_prompt():
+  while True:
+    try:
+      position = int(input('Ingrese una posición: ').strip())
+      if position >= 0:
+        return position
+      else:
+        print('La posición no puede ser negativa')
+    except ValueError:
+      print('Ingrese un número entero')
 
 
 def fibonacci(n):
@@ -12,14 +27,17 @@ def fibonacci(n):
   else:
     return fibonacci(n-1) + fibonacci(n-2)
 
+
 print('CÁLCULO DE UN ELEMENTO DE LA SUCESIÓN DE FIBONACCI')
-position = int(input('Ingrese una posición: '))
-fibonacci_value = fibonacci(position)
-print(fibonacci_value)
+
+while True:
+  position = validate_prompt()
+  fibonacci_value = fibonacci(position)
+  print(f'El valor que corresponde a la posición {position} es {fibonacci_value}')
 
 """
-Ejemplo de arbol recursivo si se pasa la posición 4
-Por un tema de espacio no se pondra el return en las ramas
+Ejemplo de arbol recursivo si se pasa la posición 4 a la función.
+Por falta de espacio no se pondra el return en las ramas.
 
 fibonacci(4)
 |
