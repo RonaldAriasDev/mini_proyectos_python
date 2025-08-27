@@ -1,6 +1,20 @@
 # 📌 Cálculo del factorial de un número
-# El programa pide al usuario que ingrese un número.
-# Devuelve el factorial de ese número usando una función.
+# El programa pide al usuario que ingrese un número entre 1 y 100.
+# Verifica que la entrada sea válida y esté dentro del rango permitido.
+# Devuelve el factorial de ese número usando una función recursiva.
+
+
+def validate_prompt():
+  while True:
+    try:
+      number = int(input('Ingrese un número entre 0 y 100: ').strip())
+      if 0 <= number <= 100:
+        return number
+      else:
+        print('El número que ingreso esta fuera de rango')
+    except ValueError:
+      print('Ingrese un número entero')
+
 
 def factorial(n: int):
   if n == 0:
@@ -8,10 +22,13 @@ def factorial(n: int):
   else: 
     return n * factorial(n-1)
 
+
 print('CÁLCULO DEL FACTORIAL')
-number = int(input(' \nIngrese un número: '))
-number_factorial = factorial(number)
-print(f' \nEl factorial de {number} es {number_factorial}')
+  
+while True:
+  number = validate_prompt() 
+  number_factorial = factorial(number)
+  print(f'El factorial de {number} es {number_factorial}')
 
 """
 Ejemplo de árbol recursivo cuando se pasa el valor 5 a la función.
