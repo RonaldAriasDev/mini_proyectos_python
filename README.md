@@ -1,2 +1,3 @@
-📌 Proyectos simples que muestran la práctica de conceptos y fundamentos de Python.
-Cada proyecto es funcional y permite ejercitar la lógica de programación.
+# 📌 Mini proyectos de Python
+
+Este repositorio contiene **proyectos simples y funcionales** que permiten poner en práctica conceptos y fundamentos de Python.
