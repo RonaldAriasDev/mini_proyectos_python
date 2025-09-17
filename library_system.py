@@ -95,14 +95,14 @@ class Archive:
         self.materials.append(material)
     
     def show_materials(self):
-        if len(self.materials) >= 1:
+        if self.materials:
             for material in self.materials:
                 print(material)
         else:
             print(f'No se ha registrado ningún material.')
         
     def search_material(self):
-        title = format_text('\nIngrese el título del material: ')
+        title = validate_word('\nIngrese el título del material: ')
         for material in self.materials:
             if material.title == title:
                 print(material)
@@ -113,46 +113,7 @@ class Archive:
 storage = Archive()
 
 
-def menu():
-    menu_lines = [
-        'Seleccione una opción:', 
-        '1. Registrar material', 
-        '2. Mostrar todos los materiales', 
-        '3. Buscar material por título', 
-        '4. Salir: '
-    ]
-    while True:
-        try:
-            menu_option = int(input('\n' + '\n'.join(menu_lines)))
-            if menu_option in [1, 2, 3, 4]:
-                return menu_option
-            else:
-                print('\nSeleccione una opción valida')
-        except ValueError:
-            print('\nDigite un número entero')
-
-
-def material_type():
-    selected_option = [
-        'Seleccione el tipo de material', 
-        '1. Libro', 
-        '2. Revista', 
-        '3. Pelicúla'  
-    ]
-    while True:
-        try:
-            selected_material = int(
-                input('\n' + '\n'.join(selected_option))
-                )
-            if selected_material in [1, 2, 3]:
-                return selected_material
-            else:
-                print('Seleccione una opción valida')
-        except ValueError:
-            print('Digite un número entero')
-
-
-def format_text(text: str):
+def validate_word(text: str):
     while True:
         prompt = input(text).strip()
         if all(word.isalpha() for word in prompt.split()):
@@ -161,24 +122,26 @@ def format_text(text: str):
             print('Ingrese solo letras')
 
 
-def format_number(text: str, min_val: int, max_val: int):
+def validate_choice(prompt, min_val, max_val, islist=False):
     while True:
         try:
-            formatted_number = int(input(text))
-            if min_val <= formatted_number <= max_val:
-                return formatted_number
+            text = '\n' + '\n'.join(prompt) if islist else prompt
+            user_choice = int(input(text))
+
+            if min_val <= user_choice <= max_val:
+                return user_choice
             else:
-                print(f'Ingrese un número entre {min_val} y {max_val}')
+                print(f"Ingrese un número entre {min_val} y {max_val}")
         except ValueError:
-            print('Ingrese un número entero')
+            print("Ingrese un número entero")
 
 
 def add_book():
     print('\nIngrese los datos a continuación')
-    title = format_text('Titulo: ')
-    year = format_number('Año de publicación: ', 0, 2025)
-    author = format_text('Autor: ')
-    number_pages = format_number('Número de páginas: ', 1, 1000)
+    title = validate_word('Titulo: ')
+    year = validate_choice('Año de publicación: ', 0, 2025)
+    author = validate_word('Autor: ')
+    number_pages = validate_choice('Número de páginas: ', 1, 1000)
     new_book = Book(title, year, author, number_pages)
     storage.add(new_book)
     print('Libro agregado con éxito')
@@ -186,10 +149,10 @@ def add_book():
 
 def add_magazine():
     print('\nIngrese los datos a continuación')
-    title = format_text('Titulo: ')
-    year = format_number('Año de publicación: ', 1900, 2025)
-    edition_number = format_number('Edicición n•: ', 1, 120)
-    publication_month = format_text('Més de publicación: ')
+    title = validate_word('Titulo: ')
+    year = validate_choice('Año de publicación: ', 1900, 2025)
+    edition_number = validate_choice('Edicición n•: ', 1, 120)
+    publication_month = validate_word('Més de publicación: ')
     new_magazine = Magazine(title, year, edition_number, publication_month)
     storage.add(new_magazine)
     print('Revista agregada con éxito')
@@ -197,36 +160,51 @@ def add_magazine():
   
 def add_movie():
     print('\nIngrese los datos a continuación')
-    title = format_text('Titulo: ')
-    year = format_number('Año de publicación: ', 1900, 2025)
-    director = format_text('Director: ')
-    duration_minutes = format_number('Duración en minutos: ', 1, 300)
+    title = validate_word('Titulo: ')
+    year = validate_choice('Año de publicación: ', 1900, 2025)
+    director = validate_word('Director: ')
+    duration_minutes = validate_choice('Duración en minutos: ', 1, 300)
     new_movie = Movie(title, year, director, duration_minutes)
     storage.add(new_movie)
     print('Película agregada con éxito')
 
 
-print('SISTEMA DE LÍBRERIA')
-print('Bienvenido')
+menu_options = [
+    'Seleccione una opción:', 
+    '1. Registrar material', 
+    '2. Mostrar todos los materiales', 
+    '3. Buscar material por título', 
+    '4. Salir: '
+]
+
+material_types = [
+    'Seleccione el tipo de material', 
+    '1. Libro', 
+    '2. Revista', 
+    '3. Pelicúla: '  
+]
+
+print('SISTEMA DE LIBRERIA\nBienvenido')
 
 while True:
-    menu_option = menu()
+    menu_option = validate_choice(menu_options, 1, 4, True)
     
-    if menu_option == 1:
-        selected_material = material_type()
-        if selected_material == 1:
-            add_book()
-        elif selected_material == 2:
-            add_magazine()
-        elif selected_material == 3:
-            add_movie()
-    
-    elif menu_option == 2:
-        storage.show_materials()
-      
-    elif menu_option == 3:
-        storage.search_material()
+    match menu_option:
+        case 1:
+            material_type = validate_choice(material_types, 1, 3, True)
+            if material_type == 1:
+                add_book()
+            elif material_type == 2:
+                add_magazine()
+            elif material_type == 3:
+                add_movie()
+        
+        case 2:
+            storage.show_materials()
+        
+        case 3:
+            storage.search_material()
 
-    elif menu_option == 4:
-        print('\nHasta pronto')
-        break
+        case 4:
+            print('\nHasta pronto')
+            break
