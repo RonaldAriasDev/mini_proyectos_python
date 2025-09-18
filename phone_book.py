@@ -12,7 +12,7 @@ Permite realizar distintas operaciones sobre la lista de contactos:
 
 
 def validate_menu_option():
-    my_list = [
+    menu_options = [
         'Seleccione una opción:', 
         '1. Mostrar contactos', 
         '2. Buscar por nombre', 
@@ -24,20 +24,27 @@ def validate_menu_option():
     
     while True:
         try:
-            menu_option = int(input('\n' + '\n'.join(my_list)).strip())
+            menu_option = int(input('\n' + '\n'.join(menu_options)))
             if 1 <= menu_option <= 6:
                 return menu_option
             else:
                 print('Ingrese una opción válida')
         except ValueError:
             print('Ingrese un número entero')
-  
 
-def show_contacts():
-    if len(contacts) >= 1:
-        print(contacts)
-    else:
-        print('No hay contactos registrados')
+
+def validate_number():
+    while True:
+        try:
+            validated_number = int(
+                input('Ingrese un número de nueve digitos como máximo: ')
+            )
+            if 1 <= validated_number <= 9:
+                return validated_number
+            else:
+                print('Ingrese entre 1 y 9 dígitos')
+        except ValueError:
+            print('Ingrese un número entero')
   
 
 def validate_name():
@@ -48,26 +55,19 @@ def validate_name():
         else:
             print('Ingrese solo letras')
 
+
+def show_contacts():
+    if contacts:
+        print(contacts)
+    else:
+        print('No hay contactos registrados')
+
   
 def search_contact(name):
     if name in contacts:
         print(f'El número de {name} es {contacts[name]}')
     else:
         print('Contacto no encontrado')
-  
-
-def validate_number():
-    while True:
-        try:
-            validated_number = int(
-                input('Ingrese un número de nueve digitos como máximo: ').strip()
-            )
-            if 1 <= len(str(validated_number)) <= 9:
-                return validated_number
-            else:
-                print('Ingrese entre 1 y 9 dígitos')
-        except ValueError:
-            print('Ingrese un número entero')
  
  
 def add_contact(name, number):
@@ -92,28 +92,29 @@ def exit():
     print('Hasta pronto')
 
 
-print("AGENDA TELEFÓNICA")
 contacts = {}
+print("AGENDA TELEFÓNICA")
 
 while True:
     menu_option = validate_menu_option()
     
-    if menu_option == 1:
-        show_contacts()
-    elif menu_option == 2:
-        name = validate_name()
-        search_contact(name)
-    elif menu_option == 3:
-        name = validate_name()
-        number = validate_number()
-        add_contact(name, number)
-    elif menu_option == 4:
-        name = validate_name()
-        number = validate_number()
-        update_contact(name, number)
-    elif menu_option == 5:
-        name = validate_name()
-        delete_contact(name)
-    elif menu_option == 6:
-        exit()
-        break
+    match menu_option:
+        case 1:
+            show_contacts()
+        case 2:
+            name = validate_name()
+            search_contact(name)
+        case 3:
+            name = validate_name()
+            number = validate_number()
+            add_contact(name, number)
+        case 4:
+            name = validate_name()
+            number = validate_number()
+            update_contact(name, number)
+        case 5:
+            name = validate_name()
+            delete_contact(name)
+        case 6:
+            exit()
+            break
